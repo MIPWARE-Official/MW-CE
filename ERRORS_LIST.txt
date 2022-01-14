@@ -1,0 +1,7 @@
+ERR0R 001 = Invalid cmd
+
+ERR0R 002 = Invalid command usage of '(command)'.
+
+ERR0R 003 = Invalid choice
+
+(MINOR) ERR0R 004 = Failed to leave/exit program
