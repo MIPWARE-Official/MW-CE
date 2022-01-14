@@ -48,7 +48,7 @@ def exitmwce():
   screen_clear()
   exit
 
-version = ("0.0.1 Alpha PE")
+version = ("0.0.2 Alpha PE")
 
 screen_clear()
 
@@ -88,6 +88,18 @@ def infoofmwce():
           print("run (file name): runs the file that is listed in the command")
           print("tree: shows both reg directories and sub-directories and most files too")
           print()
+          dosmainmenu()
+
+        elif command == ("clear --help"):
+          print()
+          print("Clears the screen")
+          print()
+          dosmainmenu()
+
+        elif command == ("exit --help"):
+          print()
+          print("Exits the MW-CE")
+          print
           dosmainmenu()
 
         elif command == ("tree"):
