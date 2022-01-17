@@ -57,7 +57,7 @@ def exitmwce():
   screen_clear()
   exit
 
-version = ("0.0.4 Alpha PE")
+version = ("0.0.5 Alpha PE")
 
 screen_clear()
 
@@ -88,14 +88,18 @@ def infoofmwce():
         #commands
         if command == ("help"):
           print()
+          print("======================General commands=====================")
           print("help: opens an list of commands")
           print("clear: Clears the screen")
           print("exit: Exits the MW-CE")
           print("print: Prints text on the screen")
           print("info: shows the bulid, version and info of MW-CE")
           print("list: Shows external files that can be runned")
+          print("time: Shows the time")
           print("run (file name): runs the file that is listed in the command")
           print("tree: shows both reg directories and sub-directories and most files too")
+          print()
+          print("================File encryption and decryption==============")
           print("enc: Encrypts a file in the same dir that this program is in")
           print("dec: Decrypts a file in the same dir that this program is in")
           print()
@@ -158,6 +162,12 @@ def infoofmwce():
         elif command == ("run"):
           print()
           print(f"{bcolors.WARNING}ERR0R 002: Invalid command usage of 'run'.{bcolors.ENDC}")
+          print()
+          dosmainmenu()
+
+        elif command == ("test"):
+          print()
+          print("Hello, this is a test")
           print()
           dosmainmenu()
 
