@@ -123,12 +123,11 @@ def infoofmwce():
             enc_file.write(encrypted)
 
           print()
-          print("File encrypted")
+          print(f"{bcolors.OKGREEN}File encrypted!{bcolors.ENDC}")
           print()
           dosmainmenu()
 
         elif command == ("dec"):
-          screen_clear()
           exec(open('File_decrypter.py').read())
           dosmainmenu()
 
