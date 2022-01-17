@@ -57,7 +57,7 @@ def exitmwce():
   screen_clear()
   exit
 
-version = ("0.0.3 Alpha PE")
+version = ("0.0.4 Alpha PE")
 
 screen_clear()
 
