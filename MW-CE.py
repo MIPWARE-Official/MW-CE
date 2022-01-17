@@ -12,6 +12,7 @@ print("Loaded 'sys'")
 import csv
 print("Loaded 'csv'")
 import random
+
 print("Loaded 'random'")
 time.sleep(1)
 
@@ -29,8 +30,16 @@ class bcolors:
 
 print("Loaded all imports")
 from os import system, name
+from os import listdir
 from datetime import datetime
 from time import sleep
+
+
+from cryptography.fernet import Fernet
+key="lbeiXBZ1gIVWtTAlbXCACKEIT7B3AppqxZib-35LmQo="
+
+
+fernet=Fernet(key)
 
 #Def's the "screen_clear" function to clear the screen
 def screen_clear():
@@ -48,7 +57,7 @@ def exitmwce():
   screen_clear()
   exit
 
-version = ("0.0.2 Alpha PE")
+version = ("0.0.3 Alpha PE")
 
 screen_clear()
 
@@ -75,7 +84,7 @@ def infoofmwce():
       print()
       print()
       def dosmainmenu():
-        command = input(f"{bcolors.ROOTRED}(./ROOT){bcolors.ENDC} Command: ") 
+        command = input(f"{bcolors.ROOTRED}(ROOT){bcolors.ENDC} Command: ") 
         #commands
         if command == ("help"):
           print()
@@ -87,6 +96,8 @@ def infoofmwce():
           print("list: Shows external files that can be runned")
           print("run (file name): runs the file that is listed in the command")
           print("tree: shows both reg directories and sub-directories and most files too")
+          print("enc: Encrypts a file in the same dir that this program is in")
+          print("dec: Decrypts a file in the same dir that this program is in")
           print()
           dosmainmenu()
 
@@ -94,6 +105,31 @@ def infoofmwce():
           print()
           print("Clears the screen")
           print()
+          dosmainmenu()
+
+        elif command == ("enc"):
+          print()
+          print("What file do you want to encrypt?")
+          print()
+          encfile=input("> ")
+          print()
+          print("Now encrypting file. . .")
+          print()
+          with open(encfile,'rb') as file:
+            orginal=file.read()
+          
+          encrypted=fernet.encrypt(orginal)
+          with open(encfile,'wb') as enc_file:
+            enc_file.write(encrypted)
+
+          print()
+          print("File encrypted")
+          print()
+          dosmainmenu()
+
+        elif command == ("dec"):
+          screen_clear()
+          exec(open('File_decrypter.py').read())
           dosmainmenu()
 
         elif command == ("exit --help"):
@@ -134,12 +170,28 @@ def infoofmwce():
           print()
           dosmainmenu()
 
+        elif command == ("cd files"):
+          # change the current directory
+          # to specified directory
+          os.chdir(r"files")
+
+          print()
+          print("Directory changed")
+          print()
+          openeddir = ('files')
+          dosmainmenu()
+
+
         elif command == ("list"):
-          print()
-          print("========files========")
-          print()
-          print("Coming soon!")
-          print()
+          # Get the list of all files and directories
+          # in the root directory
+          path = "/"
+          dir_list = os.listdir(path)
+  
+          print("files '", path, "' :") 
+  
+          # print the list
+          print(dir_list)
           dosmainmenu()
 
         elif command == ("run spammer.exe"):
