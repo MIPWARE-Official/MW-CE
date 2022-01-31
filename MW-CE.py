@@ -116,8 +116,10 @@ def infoofmwce():
         elif command == ("whatsnew"):
           print()
           print("Whats new to", version)
-          print()
+          print("============================")
           print("Added usage of custom keys for File encryption and decryption")
+          print()
+          print("Bug fixes")
           print()
           print("Screen now clears with exiting the program")
           print()
