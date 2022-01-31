@@ -57,7 +57,7 @@ def exitmwce():
   screen_clear()
   exit
 
-version = ("0.0.5 Alpha PE")
+version = ("0.0.6 Alpha PE")
 
 screen_clear()
 
@@ -98,6 +98,8 @@ def infoofmwce():
           print("time: Shows the time")
           print("run (file name): runs the file that is listed in the command")
           print("tree: shows both reg directories and sub-directories and most files too")
+          print("pyver: Prints the version of python your running")
+          print("whatsnew: Shows whats new to an update")
           print()
           print("================File encryption and decryption==============")
           print("enc: Encrypts a file in the same dir that this program is in")
@@ -111,11 +113,32 @@ def infoofmwce():
           print()
           dosmainmenu()
 
+        elif command == ("whatsnew"):
+          print()
+          print("Whats new to", version)
+          print()
+          print("Added usage of custom keys for File encryption and decryption")
+          print()
+          print("Screen now clears with exiting the program")
+          print()
+          dosmainmenu()
+        elif command == ("pyver"):
+          assert sys.version_info >= (2, 5)
+          print()
+          print(sys.version)
+          print()
+          dosmainmenu()
+
         elif command == ("enc"):
           print()
           print("What file do you want to encrypt?")
           print()
           encfile=input("> ")
+          print()
+          print("Enter the key you will want to use")
+          print()
+          key=input("> ")
+          fernet=Fernet(key)
           print()
           print("Now encrypting file. . .")
           print()
@@ -238,6 +261,7 @@ def infoofmwce():
           exitinput1 = input("y? n?: ")
 
           if exitinput1 == ("y"):
+            screen_clear()
             exit
             exit
 
@@ -245,8 +269,10 @@ def infoofmwce():
             print("Aborting exit. . .")
             time.sleep(1.5)
             screen_clear()
+            dosmainmenu()
 
           elif exitinput1 == ("Y"):
+            screen_clear()
             exit
             exit
 
