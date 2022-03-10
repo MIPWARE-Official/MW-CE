@@ -11,6 +11,8 @@ scapy = "^2.4.5"
 tqdm = "^4.62.3"
 python-whois = "^0.7.3"
 Faker = "^12.0.0"
+GitPython = "^3.1.27"
+requests = "^2.27.1"
 
 [tool.poetry.dev-dependencies]
 
