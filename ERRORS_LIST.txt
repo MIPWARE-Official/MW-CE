@@ -5,3 +5,7 @@ ERR0R 002 = Invalid command usage of '(command)'.
 ERR0R 003 = Invalid choice
 
 (MINOR) ERR0R 004 = Failed to leave/exit program
+
+ERR0R 005 = Error in the HTTP request
+
+ERR0R 006 = Command was disabled due to bugs
