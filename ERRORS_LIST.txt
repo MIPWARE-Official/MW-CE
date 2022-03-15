@@ -9,3 +9,7 @@ ERR0R 003 = Invalid choice
 ERR0R 005 = Error in the HTTP request
 
 ERR0R 006 = Command was disabled due to bugs
+
+(MAJOR) ERROR 007 = Failed to exit MW-CE, process termination needed
+
+ERROR 008 = Process termination needed
