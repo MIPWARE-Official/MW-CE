@@ -1,8 +1,12 @@
+#Note: Run "python3 -m poetry install" before running MW-CE!!!!
+
 print("Loading some things. . .")
 import os
 print("Loaded 'os'")
 import itertools
 print("Loaded 'itertools'")
+import subprocess
+print("Loaded 'subprocess'")
 import threading
 print("Loaded 'threading'")
 import time
@@ -50,9 +54,11 @@ import sys
 import os
 import socket
 from itertools import product
+from importlib import reload  # Python 3.4+
 
 from zipfile import ZipFile, BadZipFile
 import string
+taskkill1 = ("ok")
 
 
 
@@ -88,7 +94,7 @@ def screen_clear():
 sleep(1.3)
 
 #if there is any problems with text colors at first
-#this will fix it
+#this should fix it
 print("calibrating text colors. . .")
 print(f"{bcolors.HEADER}calibrating. . .{bcolors.ENDC}")
 print(f"{bcolors.OKGREEN}Text colors calibration complete!{bcolors.ENDC}")
@@ -97,7 +103,26 @@ def exitmwce():
   screen_clear()
   exit
 
-version = ("0.0.8 Beta PE")
+def devcmd():
+  print()
+  devcommand = input(f"{bcolors.OKGREEN}(DEV){bcolors.ENDC} Command>>> ")
+  if devcommand == ("exit"):
+    print()
+    dosmainmenu()
+
+  elif devcommand == ("taskkill"):
+    print()
+    taskkill = ("false")
+    if taskkill == ("true"):
+      sys.exit(print(f"{bcolors.OKGREEN}Successful termination{bcolors.ENDC}"))
+    else:
+        print(f"{bcolors.ROOTRED}Termination failure{bcolors.ENDC}")
+        print()
+        devcmd()
+    
+  
+
+version = ("0.0.9 Beta PE")
 
 screen_clear()
 
@@ -126,6 +151,7 @@ def infoofmwce():
       print()
       #defs the command line and commands
       def dosmainmenu():
+        taskkill2 = ("ok")
         command = input(f"{bcolors.ROOTRED}(ROOT){bcolors.ENDC} Command: ") 
         #commands
         if command == ("help"):
@@ -138,7 +164,7 @@ def infoofmwce():
           print()
           print("list: Shows external files that can be runned")
           print("time: Shows the time")
-          print("run (file name): runs the file that is listed in the command")
+          print("run: runs said file")
           print("tree: shows both reg directories and sub-directories and most files too")
           print("calib_text: Fixes text colors")
           print("pyver: Prints the version of python your running")
@@ -155,12 +181,15 @@ def infoofmwce():
           print("=======================Miscellaneous========================")
           print("weather: Prints the weather for the inputed city/town")
           print("whatsnew: Prints what is new to said update/version")
+          print("dev- help: Prints most dev commands")
           print()
           print("=======================File handeling=======================")
           print("makenew: Makes a new file with inputed name")
           print("readfile: Reads said file")
           print("writefile: Writes said text into said file")
           print("rm: Removes said file")
+          print("listdir: Lists all contents in the working dir")
+          print("cl: Counts how many lines said file has")
           print()
           dosmainmenu()
 
@@ -171,7 +200,17 @@ def infoofmwce():
           dosmainmenu()
 
 
+        #Prints a list of contents of the working dir
+        elif command == ("listdir"):
+          cmd = ['ls']
 
+          proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+          o, e = proc.communicate()
+          print()
+          print(' ' + o.decode('ascii'))
+          print()
+          dosmainmenu()
+          
 
 
           
@@ -224,15 +263,31 @@ def infoofmwce():
           os.remove(whatfile9999432743)
           print()
           dosmainmenu()
+
+        #file line counter
+        elif command == ("cl"):
+          print()
+          whatfileGYGYUSGYGYUGYTGG = input("File: ")
+          print()
+          fhand = open(whatfileGYGYUSGYGYUGYTGG)
+          count = 0
+          for line in fhand:
+            count = count + 1
+          print('Line Count:', count)
+          fhand.close()
+          print()
+          dosmainmenu()
+
+        #Runs said file
+        elif command == ("run"):
+          print()
+          runwhatile2 = input("File: ")
+          exec(open(runwhatile2).read())
+          dosmainmenu()
           
           
           
-
-
-
-
-
-
+          
 
 
 
@@ -258,8 +313,62 @@ def infoofmwce():
           print()
           dosmainmenu()
 
+        #Dev commands
 
+        #Taskkill MW-CE within the script
+        elif command == ("dev- taskkill"):
+          print()
+          taskkill = ("false")
+          print("Unloading/reloading main imports. . .")
+          import importlib
+          importlib.reload(random)
+          importlib.reload(os)
+          importlib.reload(sys)
+          importlib.reload(time)
+          importlib.reload(subprocess)
+          
+          time.sleep(1.6)
+          print("Checking for errors. . .")
+          print()
+          time.sleep(0.5)
+          print("Startup--  ", taskkill1)
+          print()
+          time.sleep(0.5)
+          print("Command line--", taskkill2)
+          print()
+          time.sleep(0.5)
+          print("Command line loader--", taskkill3)
+          time.sleep(0.5)
+          print()
+          print("Terminating MW-CE. . .")
+          time.sleep(1.2)
+          taskkill = ("true")
+          
+          if taskkill == ("true"):
+            sys.exit(print(f"{bcolors.OKGREEN}==Successful termination=={bcolors.ENDC}"))
+          else:
+            print(f"{bcolors.ROOTRED}==Termination failure=={bcolors.ENDC}")
+            print()
+            dosmainmenu()
 
+        #Dev commands help ui
+        elif command == ("dev- help"):
+          print()
+          print("=====================Developer commands=====================")
+          print("dev- taskkill: Terminates MW-CE when ran")
+          print("dev- help: Opens up a command list for developer commands")
+          print("dev- fast-taskkill: trys to taskkill MW-CE without doing checks (BIGGER FAIL CHANCE)")
+          print()
+          dosmainmenu()
+
+        elif command == ("dev- fast-taskkill"):
+          sys.exit()
+            
+           
+        elif command == ("showrandom"):
+          print()
+          dosmainmenu()
+        
         elif command == ("weather"):
           print()
           # API base URL
@@ -277,6 +386,7 @@ def infoofmwce():
             data = response.json()
             main = data['main']
 
+            
             #getting weather
             temperature = main['temp']
             temp_feel_like = main['feels_like']
@@ -427,26 +537,11 @@ def infoofmwce():
           print("Whats new to", version)
           print("==========================")
           print()
-          print("Small bug fixes")
+          print("Added some more commands to the file handeling system")
           print()
-          print("Added a nicer login text")
+          print("Some grammar fixes")
           print()
-          print("Removed the 'info' command ")
-          print()
-          print("Added 'calib_text' command")
-          print()
-          print("Added a framework system")
-          print()
-          print("Disabled the 'ddos' function due to major bugs")
-          print()
-          print("Added a 'weather' command")
-          print()
-          print("Added a 'Miscellaneous' category in 'help'")
-          print()
-          print("Added a 'File handeling' category in 'help'")
-          print()
-          print("Added a file handeling system and commands")
-          print("(Note: commands for the file handeling system ban be found in 'help')")
+          print("Added Developer commands")
           print()
           dosmainmenu()
         elif command == ("pyver"):
@@ -482,7 +577,12 @@ def infoofmwce():
           print()
           dosmainmenu()
           #anything in this fuction under this text does not fuction at this time
-
+          print()
+          print(f"{bcolors.ROOTRED}ERR0R 008: Process termination needed{bcolors.ENDC}")
+          time.sleep(2)
+          print()
+          print("Termination is now in process. . .")
+          sys.exit()
 
           
           print("What ip do you want to ddos?")
@@ -698,4 +798,5 @@ def infoofmwce():
           dosmainmenu()
 
       dosmainmenu()
+taskkill3 = ("ok")
 infoofmwce()
