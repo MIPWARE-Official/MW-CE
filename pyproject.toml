@@ -13,6 +13,9 @@ python-whois = "^0.7.3"
 Faker = "^12.0.0"
 GitPython = "^3.1.27"
 requests = "^2.27.1"
+youtube_dl = "^2021.12.17"
+pytube = "^12.0.0"
+pytube3 = "^9.6.4"
 
 [tool.poetry.dev-dependencies]
 
