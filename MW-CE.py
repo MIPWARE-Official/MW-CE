@@ -1,28 +1,26 @@
-#Note: Run "python3 -m poetry install" before running MW-CE!!!!
+#Scripted by Isaac D (Therealmip)
 
+#MW-CE script
 print("Loading some things. . .")
 import os
 print("Loaded 'os'")
-import itertools
 print("Loaded 'itertools'")
 import subprocess
 print("Loaded 'subprocess'")
-import threading
 print("Loaded 'threading'")
 import time
 print("Loaded 'time'")
 import sys
 print("Loaded 'sys'")
+print("Loaded 'youtube_dl'")
 import zipfile
 print("Loaded 'zipfile'")
 print("Loaded 'whois'")
 import socket
 print("Loaded 'socket'")
-import csv
+print("Loaded 'pytube'")
 print("Loaded 'csv'")
-import random
 print("Loaded 'random'")
-import requests, json
 print("Loaded 'requests, json'")
 
 print("Loaded 'random'")
@@ -41,6 +39,8 @@ class bcolors:
     UNDERLINE = '\033[4m'
     ROOTRED = ' \u001b[31m'
 
+rootcolor = (bcolors.BOLD)
+
 #loads in some more stuff
 print("Loaded all imports")
 from os import system, name
@@ -50,7 +50,9 @@ from time import sleep
 from tqdm import tqdm
 import time
 import socket
+import shutil
 import sys
+import platform
 import os
 import socket
 from itertools import product
@@ -58,30 +60,19 @@ from importlib import reload  # Python 3.4+
 
 from zipfile import ZipFile, BadZipFile
 import string
+from random import *
 taskkill1 = ("ok")
 
-
+def easteregg321():
+  print(f"{bcolors.ROOTRED}ERR0R 008: Process termination needed{bcolors.ENDC}")
+  time.sleep(0.7)
+  exit
 
 from cryptography.fernet import Fernet
 #Loads the enc key
 #for enc-ing files and stuff
 key="lbeiXBZ1gIVWtTAlbXCACKEIT7B3AppqxZib-35LmQo="
 
-def exitthing3():
-  exit
-  exit
-  exit
-  exit
-  exit
-  exit
-  #Yes, i do have to type 'exit' many, many times
-  exit
-  exit
-  exit
-  exit
-  exit
-  exit
-  exit
 
 fernet=Fernet(key)
 
@@ -99,30 +90,14 @@ print("calibrating text colors. . .")
 print(f"{bcolors.HEADER}calibrating. . .{bcolors.ENDC}")
 print(f"{bcolors.OKGREEN}Text colors calibration complete!{bcolors.ENDC}")
 
-def exitmwce():
+def exitthing3():
   screen_clear()
   exit
 
-def devcmd():
-  print()
-  devcommand = input(f"{bcolors.OKGREEN}(DEV){bcolors.ENDC} Command>>> ")
-  if devcommand == ("exit"):
-    print()
-    dosmainmenu()
-
-  elif devcommand == ("taskkill"):
-    print()
-    taskkill = ("false")
-    if taskkill == ("true"):
-      sys.exit(print(f"{bcolors.OKGREEN}Successful termination{bcolors.ENDC}"))
-    else:
-        print(f"{bcolors.ROOTRED}Termination failure{bcolors.ENDC}")
-        print()
-        devcmd()
     
   
 
-version = ("0.0.9 Beta PE")
+version = ("0.1 Beta PE")
 
 screen_clear()
 
@@ -152,7 +127,7 @@ def infoofmwce():
       #defs the command line and commands
       def dosmainmenu():
         taskkill2 = ("ok")
-        command = input(f"{bcolors.ROOTRED}(ROOT){bcolors.ENDC} Command: ") 
+        command = input(f"{bcolors.ROOTRED} (ROOT) {bcolors.ENDC} Command: ")
         #commands
         if command == ("help"):
           print()
@@ -180,8 +155,9 @@ def infoofmwce():
           print()
           print("=======================Miscellaneous========================")
           print("weather: Prints the weather for the inputed city/town")
-          print("whatsnew: Prints what is new to said update/version")
+          print("whatsnew: Prints what is new to said update/version (REMOVED FOR GOOD)")
           print("dev- help: Prints most dev commands")
+          print("google: Opens Google via w3m (MUST HAVE w3m INSTALLED TO USE!)")
           print()
           print("=======================File handeling=======================")
           print("makenew: Makes a new file with inputed name")
@@ -207,7 +183,7 @@ def infoofmwce():
           proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
           o, e = proc.communicate()
           print()
-          print(' ' + o.decode('ascii'))
+          print(o.decode('ascii'))
           print()
           dosmainmenu()
           
@@ -227,7 +203,9 @@ def infoofmwce():
           print("File created successfully")
           print()
           dosmainmenu()
-
+          
+          
+          
         #read a file
         elif command == ("readfile"):
           print()
@@ -287,7 +265,19 @@ def infoofmwce():
           
           
           
+
+
+
+        elif command == ("yt- download"):
+          print()
+          url = input("Url: ")
+
+          youtube = pytube.YouTube(url)
+          video = youtube.streams.first()
+          video.download('/video', 'phpinterview')
+          dosmainmenu()
           
+
 
 
 
@@ -321,27 +311,15 @@ def infoofmwce():
           taskkill = ("false")
           print("Unloading/reloading main imports. . .")
           import importlib
-          importlib.reload(random)
           importlib.reload(os)
           importlib.reload(sys)
           importlib.reload(time)
           importlib.reload(subprocess)
           
           time.sleep(1.6)
-          print("Checking for errors. . .")
-          print()
-          time.sleep(0.5)
-          print("Startup--  ", taskkill1)
-          print()
-          time.sleep(0.5)
-          print("Command line--", taskkill2)
-          print()
-          time.sleep(0.5)
-          print("Command line loader--", taskkill3)
-          time.sleep(0.5)
-          print()
-          print("Terminating MW-CE. . .")
+          #error checker script not made yet. W.I.P
           time.sleep(1.2)
+
           taskkill = ("true")
           
           if taskkill == ("true"):
@@ -364,7 +342,32 @@ def infoofmwce():
         elif command == ("dev- fast-taskkill"):
           sys.exit()
             
-           
+        #Must have w3m installed to use this command, if not. It will not work
+        elif command == ("google"):
+          os.system('w3m google.com')
+          dosmainmenu()
+
+        elif command == ("google --install -Ubu"):
+          os.system('install-pkg w3m')
+          dosmainmenu()
+
+        elif command == ("google --install -Kal"):
+          os.system('apt install w3m')
+          dosmainmenu()
+
+        elif command == ("google --install -Ter"):
+          os.system('pkg install w3m')
+          dosmainmenu()
+
+        elif command == ("google --help"):
+          print()
+          print("google --help: Opens help menu")
+          print("google --install -(ver): Installs w3m on said version")
+          print("google: Opens Google via w3m")
+          print()
+          dosmainmenu()
+
+        
         elif command == ("showrandom"):
           print()
           dosmainmenu()
@@ -421,12 +424,7 @@ def infoofmwce():
             dosmainmenu()
           
 
-
-        
-        elif command == ("load_framework"):
-          print()
-          exec(open('Frame_work_loader.py').read())
-          dosmainmenu()
+      
 
         elif command == ("e-ziplockcrack"):
           print()
@@ -530,20 +528,7 @@ def infoofmwce():
           if data:
             print("command received and executed successfully.")
 
-            
-        elif command == ("whatsnew"):
-          #shows whats new (may not be updated some times)
-          print()
-          print("Whats new to", version)
-          print("==========================")
-          print()
-          print("Added some more commands to the file handeling system")
-          print()
-          print("Some grammar fixes")
-          print()
-          print("Added Developer commands")
-          print()
-          dosmainmenu()
+        
         elif command == ("pyver"):
           assert sys.version_info >= (2, 5)
           print()
@@ -551,6 +536,17 @@ def infoofmwce():
           print()
           dosmainmenu()
 
+        elif command == ("??????"):
+          print()
+          print("Why is this command a thing??")
+          print("What is the point of this command?")
+          print("What is the point of MW-CE??!?")
+          print()
+          time.sleep(5)
+          easteregg321()
+          
+
+        
         elif command == ("hard_exit"):
           screen_clear()
           #Trys to force-exit MW-CE
@@ -583,7 +579,6 @@ def infoofmwce():
           print()
           print("Termination is now in process. . .")
           sys.exit()
-
           
           print("What ip do you want to ddos?")
           print()
@@ -626,7 +621,9 @@ def infoofmwce():
 
         elif command == ("dec"):
           #Runs the file decrtpter script
+          os.chdir(r"bin")
           exec(open('File_decrypter.py').read())
+          os.chdir("..")
           dosmainmenu()
 
         elif command == ("exit --help"):
@@ -649,6 +646,17 @@ def infoofmwce():
           print()
           dosmainmenu()
 
+        elif command == ("linuxver"):
+          print()
+          os.name
+          print()
+          platform.system()
+          print()
+          platform.release()
+          print()
+          dosmainmenu()
+          
+        
         elif command == ("clear"):
           screen_clear()
           dosmainmenu()
@@ -697,6 +705,13 @@ def infoofmwce():
           print(dir_list)
           dosmainmenu()
 
+        elif command == ("runtime"):
+          start_time = time.time()
+          print()
+          print("--- %s seconds ---" % (time.time() - start_time))
+          print()
+          dosmainmenu()
+        
         elif command == ("run spammer.exe"):
           print()
           print(f"{bcolors.ROOTRED}DANGER: This will spam text on your screen{bcolors.ENDC}")
