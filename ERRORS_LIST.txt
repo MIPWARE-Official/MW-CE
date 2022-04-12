@@ -13,3 +13,11 @@ ERR0R 006 = Command was disabled due to bugs
 (MAJOR) ERROR 007 = Failed to exit MW-CE, process termination needed
 
 ERROR 008 = Process termination needed
+
+ERROR 009 = Failed to load imports
+
+ERROR 010 = Failed to load command line
+
+ERROR 011 = File or Dir not found/File is a Dir
+
+ERROR 012 = null
