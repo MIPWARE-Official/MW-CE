@@ -1,30 +1,65 @@
 #Scripted by Isaac D (Therealmip)
 
 #MW-CE script
-print("Loading some things. . .")
-import os
-print("Loaded 'os'")
-print("Loaded 'itertools'")
-import subprocess
-print("Loaded 'subprocess'")
-print("Loaded 'threading'")
-import time
-print("Loaded 'time'")
-import sys
-print("Loaded 'sys'")
-print("Loaded 'youtube_dl'")
-import zipfile
-print("Loaded 'zipfile'")
-print("Loaded 'whois'")
-import socket
-print("Loaded 'socket'")
-print("Loaded 'pytube'")
-print("Loaded 'csv'")
-print("Loaded 'random'")
-print("Loaded 'requests, json'")
 
-print("Loaded 'random'")
-time.sleep(1)
+
+safemode = ("")
+
+#trys to load other main imports
+try:
+  print("Loading some things. . .")
+  import os
+  print("Loaded 'os'")
+  import subprocess
+  print("Loaded 'subprocess'")
+  import MWCE_sys
+  print("Loaded 'MWCE_sys'")
+  import time
+  print("Loaded 'time'")
+  import sys
+  print("Loaded 'sys'")
+  import climage
+  print("Loaded 'climage'")
+  import zipfile
+  print("Loaded 'zipfile'")
+  import socket
+  print("Loaded 'socket'")
+  import random
+  print("Loaded 'random'")
+  import requests, json
+  import requests
+  print("Loaded 'requests, json'")
+  from os import system, name
+  from os import listdir
+  from datetime import datetime
+  from time import sleep
+  from tqdm import tqdm
+  import time
+  import socket
+  import shutil
+  import sys
+  import platform
+  import os
+  import socket
+  from itertools import product
+  from importlib import reload  # Python 3.4+
+  from zipfile import ZipFile, BadZipFile
+  import string
+  from random import *
+  
+#If any imports fails to load prints a error
+except Exception as err:
+  print()
+  print("ERROR 009: ", err)
+  print("Now entering Safe Mode")
+  safemode = ("Safe Mode")
+  import os
+  import subprocess
+  import time
+  from time import sleep
+  print()
+  pass
+
 
 #states text colors
 class bcolors:
@@ -42,25 +77,7 @@ class bcolors:
 rootcolor = (bcolors.BOLD)
 
 #loads in some more stuff
-print("Loaded all imports")
-from os import system, name
-from os import listdir
-from datetime import datetime
-from time import sleep
-from tqdm import tqdm
-import time
-import socket
-import shutil
-import sys
-import platform
-import os
-import socket
-from itertools import product
-from importlib import reload  # Python 3.4+
 
-from zipfile import ZipFile, BadZipFile
-import string
-from random import *
 taskkill1 = ("ok")
 
 def easteregg321():
@@ -97,7 +114,7 @@ def exitthing3():
     
   
 
-version = ("0.1 Beta PE")
+version = ("0.1.1 Beta PE")
 
 screen_clear()
 
@@ -107,7 +124,7 @@ def infoofmwce():
       print("Copyright 2022-2023")
       print(version)
       print(f"{bcolors.OKGREEN}MW-CE loaded!{bcolors.ENDC}")
-      print()
+      print(safemode)
       print()
       print()
       print()
@@ -127,7 +144,12 @@ def infoofmwce():
       #defs the command line and commands
       def dosmainmenu():
         taskkill2 = ("ok")
-        command = input(f"{bcolors.ROOTRED} (ROOT) {bcolors.ENDC} Command: ")
+        try:
+          command = input(f"{bcolors.ROOTRED} (ROOT) {bcolors.ENDC} Command: ")
+        except:
+          print()
+          print("ERROR 010: Failed to load command line")
+          print()
         #commands
         if command == ("help"):
           print()
@@ -158,14 +180,20 @@ def infoofmwce():
           print("whatsnew: Prints what is new to said update/version (REMOVED FOR GOOD)")
           print("dev- help: Prints most dev commands")
           print("google: Opens Google via w3m (MUST HAVE w3m INSTALLED TO USE!)")
+          print("vp: Prints said photo in the command line")
+          print("photodownload: Downloads said photo from the internet via a url")
           print()
           print("=======================File handeling=======================")
           print("makenew: Makes a new file with inputed name")
           print("readfile: Reads said file")
           print("writefile: Writes said text into said file")
           print("rm: Removes said file")
-          print("listdir: Lists all contents in the working dir")
+          print("listdir: Lists contents in the working dir in a more clearer manner then the 'list' command")
           print("cl: Counts how many lines said file has")
+          print("chdir: Moves to said dir")
+          print("bdir: Goes back to the list dir")
+          print("mkdir: Makes a new dir with said name inputed")
+          print("rmdir: Removes said (used or unused) dir")
           print()
           dosmainmenu()
 
@@ -198,11 +226,15 @@ def infoofmwce():
           print("What should the file name be?")
           print()
           filename1 = input("File name: ")
-          open(filename1, "xt")
-          print()
-          print("File created successfully")
-          print()
-          dosmainmenu()
+          try:
+            open(filename1, "xt")
+            print()
+            print("File created successfully")
+            print()
+            dosmainmenu()
+          except Exception as err:
+            print()
+            print("ERROR 012: ", err)
           
           
           
@@ -210,11 +242,18 @@ def infoofmwce():
         elif command == ("readfile"):
           print()
           whatfile123423434 = input("File: ")
-          f = open(whatfile123423434, "r")
-          print()
-          print(f.read())
-          print()
-          dosmainmenu()
+          try:
+            f = open(whatfile123423434, "r")
+            print()
+            print(f.read())
+            print()
+            dosmainmenu()
+          except Exception as err:
+            print()
+            print("ERROR 011: ", err)
+            print()
+            dosmainmenu()
+          
 
         #write to said file
         elif command == ("writefile"):
@@ -238,9 +277,15 @@ def infoofmwce():
           print("removing file. . .")
           print()
           time.sleep(0.1)
-          os.remove(whatfile9999432743)
-          print()
-          dosmainmenu()
+          try:
+            os.remove(whatfile9999432743)
+            print("File removed")
+            print()
+            dosmainmenu()
+          except Exception as err:
+            print("ERROR 011: ", err)
+            print()
+            dosmainmenu()
 
         #file line counter
         elif command == ("cl"):
@@ -263,22 +308,64 @@ def infoofmwce():
           exec(open(runwhatile2).read())
           dosmainmenu()
           
-          
-          
 
-
-
-        elif command == ("yt- download"):
+        #changes dir
+        elif command == ("chdir"):
           print()
-          url = input("Url: ")
+          cha = input("What dir do you want to move to?: ")
+          try:
+            os.chdir(cha)
+            print()
+            dosmainmenu()
+          except Exception as err:
+            print("ERROR 011: ", err)
+            print()
+            dosmainmenu()
 
-          youtube = pytube.YouTube(url)
-          video = youtube.streams.first()
-          video.download('/video', 'phpinterview')
+        #goes back a dir
+        elif command == ("bdir"):
+          os.chdir("..")
+          dosmainmenu()
+
+        #makes a dir
+        elif command == ("mkdir"):
+          print()
+          newdir = input("name for new dir: ")
+          os.mkdir(newdir)
+          print()
+          dosmainmenu()
+
+        #removes a used dir (has files in it)
+        elif command == ("rmdir"):
+          print()
+          print(f"{bcolors.ROOTRED}WARNING: THIS WILL REMOVE DIR'S THAT CONTAINS FILES, USE AT YOU'RE OWN RISK{bcolors.ENDC}")
+          dir = input("What (used) dir you want to remove?: ")
+          if dir == ("bin"):
+            print()
+            print("System dir's CAN NOT be removed")
+            print()
+            dosmainmenu()
+          else:
+            try:
+              shutil.rmtree(dir)
+              print()
+              dosmainmenu()
+            except Exception as err:
+              print("ERROR 011: ", err)
+              print()
+              dosmainmenu()
+
+        #views photos in the command line
+        elif command == ("vp"):
+          print()
+          pic = input("What photo do you want to view?: ")
+          output = climage.convert(pic)
+          print(output)
+          print("Printed photo")
+          print()
           dosmainmenu()
           
-
-
+          
 
 
         
@@ -303,6 +390,26 @@ def infoofmwce():
           print()
           dosmainmenu()
 
+        elif command == ("photodownload"):
+          print()
+          image_url = input("Image url: ")
+          filename = image_url.split("/")[-1]
+          r = requests.get(image_url, stream = True)
+          if r.status_code == 200:
+            r.raw.decode_content = True
+            with open(filename,'wb') as f:
+              shutil.copyfileobj(r.raw, f)
+              print('Image sucessfully Downloaded: ',filename)
+              print()
+              dosmainmenu()
+          else:
+            print('Image Couldn\'t be retreived')
+            print()
+            dosmainmenu()
+
+
+
+          
         #Dev commands
 
         #Taskkill MW-CE within the script
@@ -546,6 +653,13 @@ def infoofmwce():
           easteregg321()
           
 
+        elif command == ("test3"):
+          try:
+            fnfuhuhd
+            dosmainmenu()
+          except:
+            print("ERROR")
+            dosmainmenu()
         
         elif command == ("hard_exit"):
           screen_clear()
@@ -623,6 +737,12 @@ def infoofmwce():
           #Runs the file decrtpter script
           os.chdir(r"bin")
           exec(open('File_decrypter.py').read())
+          os.chdir("..")
+          dosmainmenu()
+
+        elif command == ("fw"):
+          os.chdir(r"bin")
+          exec(open('FW.py').read())
           os.chdir("..")
           dosmainmenu()
 
@@ -787,9 +907,7 @@ def infoofmwce():
           dosmainmenu()
 
         elif command == ("time"):
-          now = datetime.now()
-          current_time = now.strftime("%H:%M:%S")
-          print("The current time is", current_time)
+          MWCE_sys.ShowTime()
           dosmainmenu()
         
         #File reading system template
