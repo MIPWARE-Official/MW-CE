@@ -12,8 +12,6 @@ try:
   print("Loaded 'os'")
   import subprocess
   print("Loaded 'subprocess'")
-  import MWCE_sys
-  print("Loaded 'MWCE_sys'")
   import time
   print("Loaded 'time'")
   import sys
@@ -907,7 +905,9 @@ def infoofmwce():
           dosmainmenu()
 
         elif command == ("time"):
-          MWCE_sys.ShowTime()
+          now = datetime.now()
+          current_time = now.strftime("%H:%M:%S")
+          print("The current time is", current_time)
           dosmainmenu()
         
         #File reading system template
