@@ -21,3 +21,5 @@ ERROR 010 = Failed to load command line
 ERROR 011 = File or Dir not found/File is a Dir
 
 ERROR 012 = null
+
+ERROR 013 = Calc failure
