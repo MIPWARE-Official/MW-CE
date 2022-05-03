@@ -60,11 +60,11 @@ def cmdLoader():
     elif command == ("MW-CE"):
       os.chdir("..")
       try:
-        exec(open('main.py').read())
-        exit()
-      except:
         exec(open('MW-CE.py').read())
         exit()
+      except:
+        print("Error!")
+        commandLine()
 
     elif command == ("help"):
       print()
