@@ -44,3 +44,11 @@ urllib3
 3: Run the command "cd MIPWARE-Command-Executor-MW-CE-"
 
 4: then run "python3 MW-CE.py"
+
+## Some features
+
+1: Lots of file managing tools
+
+https://media.giphy.com/media/q5R7T4nxyavVg5HfuJ/giphy.gif
+
+(More info coming soon!)
