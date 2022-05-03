@@ -51,4 +51,6 @@ urllib3
 
 ![Alt Text](https://media.giphy.com/media/q5R7T4nxyavVg5HfuJ/giphy.gif)
 
-(More info coming soon!)
+2: Ip whois tools
+
+![Alt Text](https://media.giphy.com/media/ZaUepRmJE26ejXerQQ/giphy.gif)
