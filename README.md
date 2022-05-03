@@ -48,9 +48,11 @@ urllib3
 ## Some features
 
 1: Lots of file managing tools
+(Shown in .gif: "mkdir", "chdir" "bdir")
 
 ![Alt Text](https://media.giphy.com/media/q5R7T4nxyavVg5HfuJ/giphy.gif)
 
 2: Ip whois tools
+(Shown in .gif: "myip", "whois")
 
 ![Alt Text](https://media.giphy.com/media/ZaUepRmJE26ejXerQQ/giphy.gif)
