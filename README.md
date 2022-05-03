@@ -49,6 +49,6 @@ urllib3
 
 1: Lots of file managing tools
 
-<iframe src="https://giphy.com/embed/q5R7T4nxyavVg5HfuJ" width="480" height="352" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/q5R7T4nxyavVg5HfuJ">via GIPHY</a></p>
+![Alt Text](https://media.giphy.com/media/q5R7T4nxyavVg5HfuJ/giphy.gif)
 
 (More info coming soon!)
