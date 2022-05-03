@@ -33,6 +33,9 @@ python-dateutil
 python-whois
 requests
 scapy
+
+
+2: Run the command "git clone"
 six
 smmap
 tqdm
