@@ -5,9 +5,25 @@
 
 safemode = ("")
 
-#trys to load other main imports
+devmode = ("")
+
+#Trys to print MW-CE 'textart' in color
 try:
-  print("Loading some things. . .")
+  class startupcolors:
+      BLUE = '\033[94m'
+      ENDC = '\033[0m'
+      italic = '\x1B[3m'
+      italicnorm = '\x1B[0m'
+  from art import *
+  print(f"{startupcolors.BLUE}")
+  tprint("MW-CE")
+  print(f"{startupcolors.ENDC}")
+except:
+  pass
+
+
+try:
+  print("Loading imports. . .")
   import os
   print("Loaded 'os'")
   import subprocess
@@ -26,12 +42,13 @@ try:
   print("Loaded 'random'")
   import requests, json
   import requests
-  print("Loaded 'requests, json'")
+  import whois
   from os import system, name
   from os import listdir
   from datetime import datetime
   from time import sleep
   from tqdm import tqdm
+  from art import *
   import time
   import socket
   import shutil
@@ -40,23 +57,29 @@ try:
   import os
   import socket
   from itertools import product
-  from importlib import reload  # Python 3.4+
+  from importlib import reload
   from zipfile import ZipFile, BadZipFile
   import string
   from random import *
   
-#If any imports fails to load prints a error
-except Exception as err:
+#If any imports fails to load prints a error then starts Recover-Mode
+except:
   print()
-  print("ERROR 009: ", err)
-  print("Now entering Safe Mode")
-  safemode = ("Safe Mode")
+  print("ERROR!")
+  print("Entering Recover Mode..")
+  print()
+  print()
+  safemode = ("Recover-Mode")
   import os
-  import subprocess
+  import sys
   import time
   from time import sleep
-  print()
+  import subprocess
+  os.chdir('bin')
+  exec(open('Backup.py').read())
   pass
+    
+  
 
 
 #states text colors
@@ -73,8 +96,6 @@ class bcolors:
     ROOTRED = ' \u001b[31m'
 
 rootcolor = (bcolors.BOLD)
-
-#loads in some more stuff
 
 taskkill1 = ("ok")
 
@@ -111,8 +132,8 @@ def exitthing3():
 
     
   
-
-version = ("0.1.1 Beta PE")
+#Current verion of MW-CE
+version = ("0.1.3 Beta PE")
 
 screen_clear()
 
@@ -151,6 +172,20 @@ def infoofmwce():
         #commands
         if command == ("help"):
           print()
+          print("general help: Prints general commands")
+          print("====================================================")
+          print("encryption help: Prints file encryption and decryption commands")
+          print("====================================================")
+          print("hacking help: Prints Hacking, exploiting and attack commands")
+          print("====================================================")
+          print("misc help: Prints miscellaneous commands")
+          print("====================================================")
+          print("file help: Prints file handeling commands")
+          print()
+          dosmainmenu()
+
+        elif command == ("general help"):
+          print()
           print("======================General commands=====================")
           print("help: opens an list of commands")
           print("clear: Clears the screen")
@@ -164,14 +199,26 @@ def infoofmwce():
           print("calib_text: Fixes text colors")
           print("pyver: Prints the version of python your running")
           print()
+          dosmainmenu()
+
+        elif command == ("encryption help"):
           print("================File encryption and decryption==============")
           print("enc: Encrypts a file in the same dir that this program is in")
           print("dec: Decrypts a file in the same dir that this program is in")
           print()
+          dosmainmenu()
+
+        elif command == ("hacking help"):
           print("================Hacking, exploiting and attacks=============")
           print("ddos: DDOS's the target ip and port (DISABLED DUE TO BUGS)")
           print("crackziplock: Crack zip file passwords using dictionary attack in Python using the built-in zipfile module")
           print("scanports: Scans host for open ports")
+          print("whois: Does a whois on said ip")
+          print("myip: Prints your computer's ip and hostname")
+          print()
+          dosmainmenu()
+
+        elif command == ("misc help"):
           print()
           print("=======================Miscellaneous========================")
           print("weather: Prints the weather for the inputed city/town")
@@ -180,6 +227,11 @@ def infoofmwce():
           print("google: Opens Google via w3m (MUST HAVE w3m INSTALLED TO USE!)")
           print("vp: Prints said photo in the command line")
           print("photodownload: Downloads said photo from the internet via a url")
+          print("calc: Opens calc")
+          print()
+          dosmainmenu()
+
+        elif command == ("file help"):
           print()
           print("=======================File handeling=======================")
           print("makenew: Makes a new file with inputed name")
@@ -194,6 +246,9 @@ def infoofmwce():
           print("rmdir: Removes said (used or unused) dir")
           print()
           dosmainmenu()
+          
+          
+          
 
         elif command == ("clear --help"):
           print()
@@ -233,6 +288,7 @@ def infoofmwce():
           except Exception as err:
             print()
             print("ERROR 012: ", err)
+            dosmainmenu()
           
           
           
@@ -311,14 +367,22 @@ def infoofmwce():
         elif command == ("chdir"):
           print()
           cha = input("What dir do you want to move to?: ")
-          try:
-            os.chdir(cha)
+
+          if cha == ("bin"):
+            print()
+            print("ERROR! Can not move to sys dirs")
             print()
             dosmainmenu()
-          except Exception as err:
-            print("ERROR 011: ", err)
-            print()
-            dosmainmenu()
+
+          else:
+            try:
+              os.chdir(cha)
+              print()
+              dosmainmenu()
+            except Exception as err:
+              print("ERROR 011: ", err)
+              print()
+              dosmainmenu()
 
         #goes back a dir
         elif command == ("bdir"):
@@ -329,9 +393,14 @@ def infoofmwce():
         elif command == ("mkdir"):
           print()
           newdir = input("name for new dir: ")
-          os.mkdir(newdir)
-          print()
-          dosmainmenu()
+          try:
+            os.mkdir(newdir)
+            print()
+            dosmainmenu()
+          except Exception as err:
+            print(err)
+            print()
+            dosmainmenu()
 
         #removes a used dir (has files in it)
         elif command == ("rmdir"):
@@ -362,6 +431,93 @@ def infoofmwce():
           print("Printed photo")
           print()
           dosmainmenu()
+
+        elif command == ("calc"):
+          def add(x, y):
+            return x + y
+          def subtract(x, y):
+            return x - y
+          def multiply(x, y):
+            return x * y
+          def divide(x, y):
+            return x / y
+          print()
+          print("1. Add")
+          print("2. Subtract")
+          print("3. Multiply")
+          print("4. Divide")
+          print()
+          inputthing = input("Choice: ")
+
+          if inputthing == ("1"):
+            try:
+              print()
+              inputthing = float(input("num1: "))
+              inputthing2 = float(input("num2: "))
+              print()
+              print(inputthing, "+", inputthing2, "=", add(inputthing, inputthing2))
+              print()
+              dosmainmenu()
+            except:
+              print()
+              print(f"{bcolors.WARNING}ERROR 13: Could not calc{bcolors.ENDC}")
+              print()
+              dosmainmenu()
+
+          elif inputthing == ("2"):
+            try:
+              print()
+              inputthing = float(input("num1: "))
+              inputthing2 = float(input("num2: "))
+              print()
+              print(inputthing, "-", inputthing2, "=", subtract(inputthing, inputthing2))
+              print()
+              dosmainmenu()
+            except:
+              print()
+              print(f"{bcolors.WARNING}ERROR 13: Could not calc{bcolors.ENDC}")
+              print()
+              dosmainmenu()
+
+          elif inputthing == ("3"):
+            try:
+              print()
+              inputthing = float(input("num1: "))
+              inputthing2 = float(input("num2: "))
+              print()
+              print(inputthing, "*", inputthing2, "=", multiply(inputthing, inputthing2))
+              print()
+              dosmainmenu()
+            except:
+              print()
+              print(f"{bcolors.WARNING}ERROR 013: Could not calc{bcolors.ENDC}")
+              print()
+              dosmainmenu()
+
+          elif inputthing == ("4"):
+            try:
+              print()
+              inputthing = float(input("num1: "))
+              inputthing2 = float(input("num2: "))
+              print()
+              print(inputthing, "/", inputthing2, "=", divide(inputthing, inputthing2))
+              print()
+              dosmainmenu()
+            except:
+              print()
+              print(f"{bcolors.WARNING}ERROR 013: Could not calc{bcolors.ENDC}")
+              print()
+              dosmainmenu()
+            
+
+
+
+            
+          else:
+            print("Not a choice")
+            print()
+            dosmainmenu()
+            
           
           
 
@@ -406,7 +562,13 @@ def infoofmwce():
             dosmainmenu()
 
 
-
+        #Opens the recover console
+        elif command == ("recover"):
+          os.chdir('bin')
+          exec(open('Backup.py').read())
+          os.chdir('..')
+          dosmainmenu()
+          
           
         #Dev commands
 
@@ -649,8 +811,7 @@ def infoofmwce():
           print()
           time.sleep(5)
           easteregg321()
-          
-
+        
         elif command == ("test3"):
           try:
             fnfuhuhd
@@ -738,12 +899,6 @@ def infoofmwce():
           os.chdir("..")
           dosmainmenu()
 
-        elif command == ("fw"):
-          os.chdir(r"bin")
-          exec(open('FW.py').read())
-          os.chdir("..")
-          dosmainmenu()
-
         elif command == ("exit --help"):
           print()
           print("Exits the MW-CE")
@@ -764,7 +919,7 @@ def infoofmwce():
           print()
           dosmainmenu()
 
-        elif command == ("linuxver"):
+        elif command == ("osver"):
           print()
           os.name
           print()
@@ -788,14 +943,6 @@ def infoofmwce():
         elif command == ("test"):
           print()
           print("Hello, this is a test")
-          print()
-          dosmainmenu()
-
-        elif command == ("tree -v"):
-          print()
-          print("Stuff-----")
-          print("         |")
-          print("         |")
           print()
           dosmainmenu()
 
@@ -829,33 +976,6 @@ def infoofmwce():
           print("--- %s seconds ---" % (time.time() - start_time))
           print()
           dosmainmenu()
-        
-        elif command == ("run spammer.exe"):
-          print()
-          print(f"{bcolors.ROOTRED}DANGER: This will spam text on your screen{bcolors.ENDC}")
-          print(f"{bcolors.ROOTRED}Are you sure you want to run this program?{bcolors.ENDC}")
-          print()
-          commandwhat1 = input("y? n?: ")
-          
-          if commandwhat1 == ("y"):
-            print("Running 'spammer.exe'...")
-            def spammerwhat4():
-              time.sleep(0.2)
-              print("YOUR COMPUTER HAS AN VIRUS!")
-              spammerwhat4()
-            spammerwhat4()
-
-          
-
-          elif commandwhat1 == ("n"):
-            print()
-            print("Aborting")
-            print()
-            dosmainmenu()
-
-          else:
-            print("ERR0R 003: Invalid choice")
-            dosmainmenu()
 
 
         elif command == ("exit"):
@@ -905,9 +1025,12 @@ def infoofmwce():
           dosmainmenu()
 
         elif command == ("time"):
+
           now = datetime.now()
           current_time = now.strftime("%H:%M:%S")
+          print()
           print("The current time is", current_time)
+          print()
           dosmainmenu()
         
         #File reading system template
@@ -915,14 +1038,31 @@ def infoofmwce():
           exec(open('File name here').read())
           dosmainmenu()
 
-
-        elif command == ("run software1"):
-          exec(open('software1.py').read())
+        elif command == ("whois"):
+          thingwhois = input("IP: ")
+          w = whois.whois(thingwhois)
+          print()
+          print(w)
+          print()
           dosmainmenu()
 
-        elif command == ("easteregg1"):
-          print("Android is better then IOS, change my mind")
+        elif command == ("myip"):
+          hostname = socket.gethostname()
+          ip_address = socket.gethostbyname(hostname)
+          print()
+          print(f"Hostname: {hostname}")
+          print(f"IP Address: {ip_address}")
+          print()
           dosmainmenu()
+
+        elif command == ("syscmd"):
+          print()
+          commandthing5 = input("OS Command > ")
+          os.system(commandthing5)
+          print()
+          dosmainmenu()
+
+
 
         else:
           print()
