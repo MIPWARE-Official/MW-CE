@@ -33,11 +33,14 @@ python-dateutil
 python-whois
 requests
 scapy
-
-
-2: Run the command "git clone"
 six
 smmap
 tqdm
 typing-extensions
 urllib3
+
+2: Run the command "git clone https://github.com/MIPWARE-Official/MIPWARE-Command-Executor-MW-CE-.git"
+
+3: Run the command "cd MIPWARE-Command-Executor-MW-CE-"
+
+4: then run "python3 MW-CE.py"
