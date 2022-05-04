@@ -55,4 +55,3 @@ urllib3
 2: Ip whois tools
 (Shown in .gif: "myip", "whois")
 
-![Alt Text](https://media.giphy.com/media/ZaUepRmJE26ejXerQQ/giphy.gif)
