@@ -25,6 +25,7 @@ except:
 try:
   print("Loading imports. . .")
   import os
+  import os.path
   print("Loaded 'os'")
   import subprocess
   print("Loaded 'subprocess'")
@@ -38,6 +39,8 @@ try:
   print("Loaded 'zipfile'")
   import socket
   print("Loaded 'socket'")
+  import pyshorteners
+  print("Loaded 'pyshorteners'")
   import random
   print("Loaded 'random'")
   import requests, json
@@ -77,10 +80,24 @@ except:
   import subprocess
   os.chdir('bin')
   exec(open('Backup.py').read())
-  pass
-    
-  
+  pass  
 
+
+
+#Checks if 'bin' exists
+file_exists = os.path.exists('bin')
+def check2343234():
+  if file_exists == False:
+    print()
+    print("WARNING: 'bin' not found. Please redownload a new version of MW-CE")
+    print()
+    exit()
+  elif file_exists == True:
+    pass
+
+check2343234()
+
+  
 
 #states text colors
 class bcolors:
@@ -103,6 +120,7 @@ def easteregg321():
   print(f"{bcolors.ROOTRED}ERR0R 008: Process termination needed{bcolors.ENDC}")
   time.sleep(0.7)
   exit
+
 
 from cryptography.fernet import Fernet
 #Loads the enc key
@@ -133,7 +151,7 @@ def exitthing3():
     
   
 #Current verion of MW-CE
-version = ("0.1.3 Beta PE")
+version = ("0.1.4 Beta PE")
 
 screen_clear()
 
@@ -227,6 +245,7 @@ def infoofmwce():
           print("google: Opens Google via w3m (MUST HAVE w3m INSTALLED TO USE!)")
           print("vp: Prints said photo in the command line")
           print("photodownload: Downloads said photo from the internet via a url")
+          print("urlshort: Makes a short version of a inputed url")
           print("calc: Opens calc")
           print()
           dosmainmenu()
@@ -1063,6 +1082,18 @@ def infoofmwce():
           dosmainmenu()
 
 
+        elif command == ("urlshort"):
+          print()
+          long_url = input("URL: ")
+          type_tiny = pyshorteners.Shortener()
+          short_url = type_tiny.tinyurl.short(long_url)
+ 
+          print("The Shortened URL is: " + short_url)
+          print
+          dosmainmenu()
+
+
+          
 
         else:
           print()
