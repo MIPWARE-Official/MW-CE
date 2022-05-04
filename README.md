@@ -7,41 +7,13 @@ The "MIPWARE Command Executor (MW-CE)" is a command executor made in python, it 
 
 (Note: you must have pip, git and python 3+ installed on your linux terminal before installing MW-CE)
 
-1: Use the "pip install" to install all needed packages for MW-CE
+1: Run the command "git clone https://github.com/MIPWARE-Official/MIPWARE-Command-Executor-MW-CE-.git"
 
-Needed packages:
+2: Run the command "cd MIPWARE-Command-Executor-MW-CE-"
 
-art
-certifi
-cffi
-charset-normalizer
-climage
-color-console
-colorama
-cryptography
-dpkt
-faker
-future
-gitdb
-gitpython
-idna
-kdtree
-pillow
-py-console
-pycparser
-python-dateutil
-python-whois
-requests
-scapy
-six
-smmap
-tqdm
-typing-extensions
-urllib3
+3: Run the command "pip freeze > requirements.txt"
 
-2: Run the command "git clone https://github.com/MIPWARE-Official/MIPWARE-Command-Executor-MW-CE-.git"
-
-3: Run the command "cd MIPWARE-Command-Executor-MW-CE-"
+4: Run the command "pip install -r requirements.txt"
 
 4: then run "python3 MW-CE.py"
 
