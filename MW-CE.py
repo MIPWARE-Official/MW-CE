@@ -151,7 +151,7 @@ def exitthing3():
     
   
 #Current verion of MW-CE
-version = ("0.1.4 Beta PE")
+version = ("0.1.5 Beta PE")
 
 screen_clear()
 
@@ -1089,10 +1089,19 @@ def infoofmwce():
           short_url = type_tiny.tinyurl.short(long_url)
  
           print("The Shortened URL is: " + short_url)
-          print
+          print()
           dosmainmenu()
 
 
+
+
+
+
+
+        
+
+        elif command == (""):
+          dosmainmenu()
           
 
         else:
