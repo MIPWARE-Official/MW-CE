@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## MW-CE
 
 You can use the [editor on GitHub](https://github.com/MIPWARE-Official/MIPWARE-Command-Executor-MW-CE-/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
