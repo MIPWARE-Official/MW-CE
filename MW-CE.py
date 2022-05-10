@@ -158,7 +158,6 @@ screen_clear()
 #defs the info screen
 def infoofmwce():
       print("MIPWARE Command Executor (MW-CE)")
-      print("Copyright 2022-2023")
       print(version)
       print(f"{bcolors.OKGREEN}MW-CE loaded!{bcolors.ENDC}")
       print(safemode)
