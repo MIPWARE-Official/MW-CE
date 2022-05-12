@@ -18,52 +18,80 @@ try:
   print(f"{startupcolors.BLUE}")
   tprint("MW-CE")
   print(f"{startupcolors.ENDC}")
+  import sys
+  import time
+  import threading
+
+  class Spinner:
+      busy = False
+      delay = 0.1
+
+      @staticmethod
+      def spinning_cursor():
+          while 1: 
+              for cursor in '|/-\\': yield cursor
+
+      def __init__(self, delay=None):
+          self.spinner_generator = self.spinning_cursor()
+          if delay and float(delay): self.delay = delay
+
+      def spinner_task(self):
+          while self.busy:
+            
+            sys.stdout.write(next(self.spinner_generator))
+            sys.stdout.flush()
+            time.sleep(self.delay)
+            sys.stdout.write('\b')
+            sys.stdout.flush()
+
+      def __enter__(self):
+          self.busy = True
+          threading.Thread(target=self.spinner_task).start()
+
+      def __exit__(self, exception, value, tb):
+          self.busy = False
+          time.sleep(self.delay)
+          if exception is not None:
+              return False
+
 except:
   pass
 
 
 try:
   print("Loading imports. . .")
-  import os
-  import os.path
-  print("Loaded 'os'")
-  import subprocess
-  print("Loaded 'subprocess'")
-  import time
-  print("Loaded 'time'")
-  import sys
-  print("Loaded 'sys'")
-  import climage
-  print("Loaded 'climage'")
-  import zipfile
-  print("Loaded 'zipfile'")
-  import socket
-  print("Loaded 'socket'")
-  import pyshorteners
-  print("Loaded 'pyshorteners'")
-  import random
-  print("Loaded 'random'")
-  import requests, json
-  import requests
-  import whois
-  from os import system, name
-  from os import listdir
-  from datetime import datetime
-  from time import sleep
-  from tqdm import tqdm
-  from art import *
-  import time
-  import socket
-  import shutil
-  import sys
-  import platform
-  import os
-  import socket
-  from itertools import product
-  from importlib import reload
-  from zipfile import ZipFile, BadZipFile
-  import string
-  from random import *
+  with Spinner():
+    import os
+    import os.path
+    import subprocess
+    import time
+    import sys
+    import climage
+    import zipfile
+    import socket
+    import pyshorteners
+    import random
+    import requests, json
+    import requests
+    import whois
+    from os import system, name
+    from os import listdir
+    from datetime import datetime
+    from time import sleep
+    from tqdm import tqdm
+    from art import *
+    import time
+    import socket
+    import shutil
+    import sys
+    import platform
+    import os
+    import socket
+    from itertools import product
+    from importlib import reload
+    from zipfile import ZipFile, BadZipFile
+    import string
+    from random import *
   
 #If any imports fails to load prints a error then starts Recover-Mode
 except:
@@ -136,7 +164,6 @@ def screen_clear():
       _ = system('cls')
    else:
       _ = system('clear')
-sleep(1.3)
 
 #if there is any problems with text colors at first
 #this should fix it
@@ -151,7 +178,7 @@ def exitthing3():
     
   
 #Current verion of MW-CE
-version = ("0.1.5 Beta PE")
+version = ("0.1.6 Beta PE")
 
 screen_clear()
 
@@ -1089,15 +1116,7 @@ def infoofmwce():
  
           print("The Shortened URL is: " + short_url)
           print()
-          dosmainmenu()
-
-
-
-
-
-
-
-        
+          dosmainmenu()        
 
         elif command == (""):
           dosmainmenu()
