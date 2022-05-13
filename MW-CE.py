@@ -1,4 +1,4 @@
-#Scripted by Isaac D (Therealmip)
+#Scripted by Therealmip
 
 #MW-CE script
 
@@ -22,14 +22,15 @@ try:
   import time
   import threading
 
+  #Loads the main daemon system
   class Spinner:
       busy = False
-      delay = 0.1
+      delay = 0.06
 
       @staticmethod
       def spinning_cursor():
           while 1: 
-              for cursor in '|/-\\': yield cursor
+              for cursor in '|/-\|' : yield cursor
 
       def __init__(self, delay=None):
           self.spinner_generator = self.spinning_cursor()
@@ -178,7 +179,7 @@ def exitthing3():
     
   
 #Current verion of MW-CE
-version = ("0.1.6 Beta PE")
+version = ("0.1.7 Beta PE")
 
 screen_clear()
 
@@ -792,13 +793,15 @@ def infoofmwce():
           print("Enter the host")
           print()
           host = input("> ")
-          for port in range(1, 1025):
-            if is_port_open(host, port):
-              print(f"{bcolors.OKGREEN}[+] {host}:{port} is open {bcolors.ENDC}")
-            else:
-              print(f"{bcolors.FAIL}[!] {host}:{port} is closed {bcolors.ENDC}")
-              print()
-              dosmainmenu()
+          with Spinner():
+            for port in range(1, 1025):
+              if is_port_open(host, port):
+                print(f"{bcolors.OKGREEN}[+] {host}:{port} is open {bcolors.ENDC}")
+                dosmainmenu()
+              else:
+                print(f"{bcolors.FAIL}[!] {host}:{port} is closed {bcolors.ENDC}")
+                print()
+                dosmainmenu()
 
         elif command == ("crackziplock"):
           print()
