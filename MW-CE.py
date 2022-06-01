@@ -7,6 +7,46 @@ safemode = ("")
 
 devmode = ("")
 
+#Trys in import "OS" if it fails the script is put to a stop
+try:
+  import os
+except:
+  print("ERROR!")
+  print("OS import error")
+  print("Please retry starting MW-CE, if that fails report this code to the main dev")
+  print("ERROR CODE: H-10-F-001")
+  exit()
+
+
+#Checks if the logging.log file is in MW-CE's working folder
+file_existsmain = os.path.exists('bin')
+if file_existsmain == False:
+  try:
+    f123 = open('logging.log', 'w')
+    f123.close()
+  except:
+    print("ERROR!")
+    exit()
+elif file_existsmain == True:
+  pass
+
+
+
+
+#Trys to import "logging", if it fails the script is put to a stop until fixed
+try:
+  import logging
+  logging.basicConfig(filename="logging.log", format='%(asctime)s %(message)s', filemode='w')
+  logger = logging.getLogger()
+  logger.setLevel(logging.DEBUG)
+except:
+  print("ERROR!")
+  print("Logging import error")
+  print("Please retry starting MW-CE, if that fails report this code to the main dev")
+  print("ERROR CODE: H-10-F-001")
+  exit()
+
+
 #Trys to print MW-CE 'textart' in color
 try:
   class startupcolors:
@@ -25,7 +65,7 @@ try:
   #Loads the main daemon system
   class Spinner:
       busy = False
-      delay = 0.06
+      delay = 0.05
 
       @staticmethod
       def spinning_cursor():
@@ -62,7 +102,6 @@ except:
 try:
   print("Loading imports. . .")
   with Spinner():
-    import os
     import os.path
     import subprocess
     import time
@@ -93,9 +132,11 @@ try:
     from zipfile import ZipFile, BadZipFile
     import string
     from random import *
+    logger.info('Imported all imports')
   
 #If any imports fails to load prints a error then starts Recover-Mode
 except:
+  logging.critical('FAILED TO LOAD IMPORTS')
   print()
   print("ERROR!")
   print("Entering Recover Mode..")
@@ -179,10 +220,9 @@ def exitthing3():
     
   
 #Current verion of MW-CE
-version = ("0.1.7 Beta PE")
+version = ("0.1.8 Beta PE")
 
 screen_clear()
-
 #defs the info screen
 def infoofmwce():
       print("MIPWARE Command Executor (MW-CE)")
@@ -207,7 +247,6 @@ def infoofmwce():
       print()
       #defs the command line and commands
       def dosmainmenu():
-        taskkill2 = ("ok")
         try:
           command = input(f"{bcolors.ROOTRED} (ROOT) {bcolors.ENDC} Command: ")
         except:
@@ -257,7 +296,7 @@ def infoofmwce():
           print("================Hacking, exploiting and attacks=============")
           print("ddos: DDOS's the target ip and port (DISABLED DUE TO BUGS)")
           print("crackziplock: Crack zip file passwords using dictionary attack in Python using the built-in zipfile module")
-          print("scanports: Scans host for open ports")
+          print("scanports: Scans host for open ports (REMOVED)")
           print("whois: Does a whois on said ip")
           print("myip: Prints your computer's ip and hostname")
           print()
@@ -638,9 +677,9 @@ def infoofmwce():
           if taskkill == ("true"):
             sys.exit(print(f"{bcolors.OKGREEN}==Successful termination=={bcolors.ENDC}"))
           else:
-            print(f"{bcolors.ROOTRED}==Termination failure=={bcolors.ENDC}")
-            print()
-            dosmainmenu()
+              print(f"{bcolors.ROOTRED}==Termination failure=={bcolors.ENDC}")
+              print()
+              dosmainmenu()
 
         #Dev commands help ui
         elif command == ("dev- help"):
@@ -777,31 +816,6 @@ def infoofmwce():
           find_pw()
           time.sleep(1.2)
           dosmainmenu()
-          
-        
-        elif command == ("scanports"):
-          def is_port_open(host, port):
-            s = socket.socket()
-            try:
-              s.connect((host, port))
-            except:
-              return False
-            else:
-              return True
-          
-          print()
-          print("Enter the host")
-          print()
-          host = input("> ")
-          with Spinner():
-            for port in range(1, 1025):
-              if is_port_open(host, port):
-                print(f"{bcolors.OKGREEN}[+] {host}:{port} is open {bcolors.ENDC}")
-                dosmainmenu()
-              else:
-                print(f"{bcolors.FAIL}[!] {host}:{port} is closed {bcolors.ENDC}")
-                print()
-                dosmainmenu()
 
         elif command == ("crackziplock"):
           print()
@@ -860,14 +874,6 @@ def infoofmwce():
           time.sleep(5)
           easteregg321()
         
-        elif command == ("test3"):
-          try:
-            fnfuhuhd
-            dosmainmenu()
-          except:
-            print("ERROR")
-            dosmainmenu()
-        
         elif command == ("hard_exit"):
           screen_clear()
           #Trys to force-exit MW-CE
@@ -887,33 +893,6 @@ def infoofmwce():
           exit
           exit
           exit
-        
-        elif command == ("ddos"):
-          print()
-          print(f"{bcolors.WARNING}ERR0R 006: Command was disabled due to bugs{bcolors.ENDC}")
-          print()
-          dosmainmenu()
-          #anything in this fuction under this text does not fuction at this time
-          print()
-          print(f"{bcolors.ROOTRED}ERR0R 008: Process termination needed{bcolors.ENDC}")
-          time.sleep(2)
-          print()
-          print("Termination is now in process. . .")
-          sys.exit()
-          
-          print("What ip do you want to ddos?")
-          print()
-          target_ip = input("> ")
-          print()
-          print("What port do you want to flood?")
-          print()
-          target_port = input("> ")
-          ip = IP(dst=target_ip)
-          tcp = TCP(sport=RandShort(), dport=target_port, flags="S")
-          raw = Raw(b"X"*1024)
-          p = ip / tcp / raw
-          send(p, loop=1, verbose=0)
-
 
         elif command == ("enc"):
           print()
@@ -993,18 +972,6 @@ def infoofmwce():
           print("Hello, this is a test")
           print()
           dosmainmenu()
-
-        elif command == ("cd files"):
-          # change the current directory
-          # to specified directory
-          os.chdir(r"files")
-
-          print()
-          print("Directory changed")
-          print()
-          openeddir = ('files')
-          dosmainmenu()
-
 
         elif command == ("list"):
           # Get the list of all files and directories
@@ -1093,7 +1060,9 @@ def infoofmwce():
           print(w)
           print()
           dosmainmenu()
+          
 
+        
         elif command == ("myip"):
           hostname = socket.gethostname()
           ip_address = socket.gethostbyname(hostname)
@@ -1105,7 +1074,7 @@ def infoofmwce():
 
         elif command == ("syscmd"):
           print()
-          commandthing5 = input("OS Command > ")
+          commandthing5 = input("Sys Command > ")
           os.system(commandthing5)
           print()
           dosmainmenu()
@@ -1133,4 +1102,5 @@ def infoofmwce():
 
       dosmainmenu()
 taskkill3 = ("ok")
+logger.info('MW-CE Started')
 infoofmwce()
