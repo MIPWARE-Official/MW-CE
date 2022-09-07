@@ -1,7 +1,7 @@
 # MIPWARE-Command-Executor-MW-CE-
 
 
-The "MIPWARE Command Executor (MW-CE)" is a command executor made FULLY python, it can do many things your normal linux terminal could not do
+The "MIPWARE Command Executor (MW-CE)" is a command executor made FULLY in python, it can do many things your normal linux terminal could not do
 
 ## How to install
 
