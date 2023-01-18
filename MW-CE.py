@@ -13,8 +13,8 @@ try:
 except:
   print("ERROR!")
   print("OS import error")
-  print("Please retry starting MW-CE, if that fails report this code to the main dev")
-  print("ERROR CODE: H-10-F-001")
+  print("Please retry starting MW-CE, if that fails report this code to support")
+  print("ERROR CODE: H-07-F-0001")
   exit()
 
 
@@ -42,8 +42,8 @@ try:
 except:
   print("ERROR!")
   print("Logging import error")
-  print("Please retry starting MW-CE, if that fails report this code to the main dev")
-  print("ERROR CODE: H-10-F-001")
+  print("Please retry starting MW-CE, if that fails report this code to support")
+  print("ERROR CODE: H-09-F-0001")
   exit()
 
 
@@ -62,7 +62,9 @@ try:
   import time
   import threading
 
-  #Loads the main daemon system
+  
+
+  #Loads the older daemon system, this is used as an backup.
   class Spinner:
       busy = False
       delay = 0.05
@@ -70,7 +72,7 @@ try:
       @staticmethod
       def spinning_cursor():
           while 1: 
-              for cursor in '|/-\|' : yield cursor
+              for cursor in '/-\|' : yield cursor
 
       def __init__(self, delay=None):
           self.spinner_generator = self.spinning_cursor()
@@ -96,12 +98,13 @@ try:
               return False
 
 except:
+  logging.error('Failed to load main loading daemon')
   pass
-
 
 try:
   print("Loading imports. . .")
   with Spinner():
+    import os
     import os.path
     import subprocess
     import time
@@ -132,25 +135,32 @@ try:
     from zipfile import ZipFile, BadZipFile
     import string
     from random import *
+    start_time = time.time()
     logger.info('Imported all imports')
+    logging.error('Test error')
   
-#If any imports fails to load prints a error then starts Recover-Mode
+#If imports fail then the script is stopped with a error
 except:
   logging.critical('FAILED TO LOAD IMPORTS')
-  print()
-  print("ERROR!")
-  print("Entering Recover Mode..")
-  print()
-  print()
-  safemode = ("Recover-Mode")
+  import time
   import os
   import sys
-  import time
   from time import sleep
-  import subprocess
-  os.chdir('bin')
-  exec(open('Backup.py').read())
-  pass  
+  print()
+  safemode = ("Safe-Mode")
+  print("ERROR!")
+  print("Logging import error")
+  print("Please retry starting MW-CE, if that fails report this code to support")
+  print("ERROR CODE: H-08-F-0002")
+  print()
+  print("Starting Safe Mode in:")
+  print("3")
+  time.sleep(1)
+  print("2")
+  time.sleep(1)
+  print("1")
+  time.sleep(1)
+  pass
 
 
 
@@ -220,7 +230,7 @@ def exitthing3():
     
   
 #Current verion of MW-CE
-version = ("0.1.8 Beta PE")
+version = ("0.1.9 Beta PE")
 
 screen_clear()
 #defs the info screen
@@ -645,15 +655,6 @@ def infoofmwce():
             print('Image Couldn\'t be retreived')
             print()
             dosmainmenu()
-
-
-        #Opens the recover console
-        elif command == ("recover"):
-          os.chdir('bin')
-          exec(open('Backup.py').read())
-          os.chdir('..')
-          dosmainmenu()
-          
           
         #Dev commands
 
@@ -986,7 +987,6 @@ def infoofmwce():
           dosmainmenu()
 
         elif command == ("runtime"):
-          start_time = time.time()
           print()
           print("--- %s seconds ---" % (time.time() - start_time))
           print()
@@ -1103,4 +1103,7 @@ def infoofmwce():
       dosmainmenu()
 taskkill3 = ("ok")
 logger.info('MW-CE Started')
+print("Starting MW-CE. . .")
 infoofmwce()
+
+
